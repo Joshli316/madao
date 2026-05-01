@@ -23,7 +23,7 @@ function thumbHtml(c) {
   return `
     <div class="thumb-frame">
       <div class="thumb-placeholder" aria-hidden="true">${escapeHtml(c.cn)} · ${escapeHtml(c.py)}</div>
-      <img src="${escapeHtml(path)}" alt="${escapeHtml(c.cn)} ${escapeHtml(c.py)}" loading="lazy" onerror="this.style.display='none'">
+      <img src="${escapeHtml(path)}" alt="${escapeHtml(c.cn)} ${escapeHtml(c.py)}" loading="lazy">
     </div>`;
 }
 
@@ -54,7 +54,7 @@ function cardHtml(c) {
         </header>
         <p class="text-xl leading-snug">
           <span data-pitch-zh>${escapeHtml(c.pitch.zh)}</span>
-          <span data-pitch-en class="italic text-[var(--color-ink-soft)] block text-lg" style="font-family:var(--font-serif-en)">${escapeHtml(c.pitch.en)}</span>
+          <span data-pitch-en class="font-en italic text-[var(--color-ink-soft)] block text-lg">${escapeHtml(c.pitch.en)}</span>
         </p>
         <p class="text-base text-[var(--color-ink-soft)]">
           <em class="not-italic font-mono text-xs uppercase tracking-widest text-[var(--color-ink-muted)] block mb-1" data-i18n="card_pickif">适合你，如果…</em>
@@ -120,7 +120,10 @@ export function renderStages(mountEl) {
     `${stageHtml(s)}${i < STAGES.length - 1 ? arrowSvg() : ''}`
   ).join('');
   mountEl.innerHTML = html;
-  // Per-language fields that aren't simple keys
+  // Hide broken thumbnails so the placeholder shows through (CSP-safe — no inline handler)
+  mountEl.querySelectorAll('.thumb-frame img').forEach((img) => {
+    img.addEventListener('error', () => { img.style.display = 'none'; }, { once: true });
+  });
   refreshDynamicI18n();
   document.addEventListener('lang:changed', refreshDynamicI18n);
 }

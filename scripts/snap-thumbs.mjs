@@ -19,12 +19,11 @@ const TARGETS = [
   { id: 'qima',      url: 'https://claude-code-launch.pages.dev/' },
   { id: 'aiqi',      url: 'https://aiqi.pages.dev/' },
   { id: 'codefu',    url: 'https://codefu.pages.dev/' },
+  { id: 'codeplay',  url: 'https://codequest-b1p.pages.dev/' },
   { id: 'agentpath', url: 'https://agentpath.pages.dev/' },
 ];
 
-const PLACEHOLDERS = [
-  { id: 'codeplay', cn: '码玩', py: 'CodePlay' },
-];
+const PLACEHOLDERS = []; // all 5 are live now — keep for future use
 
 const VIEWPORT = { width: 1600, height: 900 };
 

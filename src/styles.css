@@ -48,13 +48,10 @@ html[lang="en"] body {
   font-family: var(--font-serif-en);
 }
 
-/* English-only spans always use the English serif, even in zh mode */
-.font-en, .en-only {
-  font-family: var(--font-serif-en);
-}
-.font-mono, code, kbd, samp {
-  font-family: var(--font-mono);
-}
+/* Type-family helpers — let HTML opt into a font without arbitrary classes */
+.font-serif-cn { font-family: var(--font-serif-cn); }
+.font-en, .en-only { font-family: var(--font-serif-en); }
+.font-mono, code, kbd, samp { font-family: var(--font-mono); }
 
 /* Subtle paper texture using a tiny SVG noise — no extra HTTP request. */
 body::before {
@@ -80,6 +77,8 @@ main, header, footer { position: relative; z-index: 1; }
   border: 1.5px solid var(--ink);
   background: transparent;
   color: var(--ink);
+  min-width: 44px;
+  min-height: 36px;
   transition: background 120ms ease, color 120ms ease, transform 80ms ease;
 }
 .lang-toggle:hover { background: var(--ink); color: var(--color-cream); }
@@ -101,14 +100,17 @@ main, header, footer { position: relative; z-index: 1; }
   background: color-mix(in srgb, var(--color-paper) 80%, var(--color-coral) 20%);
 }
 
-/* Buttons inside cards */
+/* Buttons inside cards — min-height 44px for mobile tap targets */
 .btn-ink {
   font-family: var(--font-mono);
   font-weight: 600;
   letter-spacing: 0.04em;
   background: var(--ink);
   color: var(--color-cream);
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1.125rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border: 1.5px solid var(--ink);
   transition: background 120ms ease, color 120ms ease, transform 80ms ease;
 }
@@ -121,7 +123,10 @@ main, header, footer { position: relative; z-index: 1; }
   letter-spacing: 0.04em;
   background: transparent;
   color: var(--ink);
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1.125rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border: 1.5px solid var(--ink);
   transition: background 120ms ease, color 120ms ease, transform 80ms ease;
 }

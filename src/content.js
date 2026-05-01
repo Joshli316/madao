@@ -61,12 +61,12 @@ export const COURSES = [
       zh: '你喜欢更长的关卡式冒险，从入门一路打到面试就绪。',
       en: 'You prefer a longer level-based adventure, from beginner to interview-ready.',
     },
-    duration: { zh: '约 9 个世界', en: '~9 worlds' },
+    duration: { zh: '4 个世界 · 11 个游戏', en: '4 worlds · 11 games' },
     perDay: { zh: '20 分钟/天', en: '20 min/day' },
     difficulty: 2,
-    url: '#',
+    url: 'https://codequest-b1p.pages.dev/',
     thumb: 'public/thumbs/codeplay.png',
-    live: false, // Not yet deployed — show "Coming Soon"
+    live: true,
   },
   {
     id: 'agentpath',

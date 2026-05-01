@@ -17,6 +17,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="码道 MaDao">
   <meta name="twitter:description" content="The Way of Code — From Zero to Agentic AI.">
+  <meta name="twitter:image" content="https://madao-cc.pages.dev/public/og.png">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://madao-cc.pages.dev/">
+  <link rel="alternate" hreflang="zh-CN" href="https://madao-cc.pages.dev/">
+  <link rel="alternate" hreflang="en" href="https://madao-cc.pages.dev/">
 
   <!-- Favicon: hand-drawn 道 stroke in coral on cream -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23FAF6EE'/><text x='32' y='46' text-anchor='middle' font-family='serif' font-size='44' font-weight='700' fill='%231A1A1A'>码</text><circle cx='52' cy='14' r='5' fill='%23D9534F'/></svg>">
@@ -27,16 +33,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="dist/tailwind.css">
-
-  <style>
-    .font-serif-cn { font-family: var(--font-serif-cn); }
-    .font-en       { font-family: var(--font-serif-en); }
-    .font-mono     { font-family: var(--font-mono); }
-  </style>
 </head>
 <body class="min-h-screen">
   <!-- SVG filter for hand-drawn arrow wobble -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
     <defs>
       <filter id="wobble">
         <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/>
