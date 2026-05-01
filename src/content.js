@@ -17,7 +17,7 @@ export const COURSES = [
     perDay: { zh: '30 分钟/天', en: '30 min/day' },
     difficulty: 1,
     url: 'https://claude-code-launch.pages.dev/',
-    thumb: 'public/thumbs/qima.png',
+    thumb: 'public/thumbs/qima.jpg',
     live: true,
   },
   {
@@ -49,7 +49,7 @@ export const COURSES = [
     perDay: { zh: '15 分钟/天', en: '15 min/day' },
     difficulty: 2,
     url: 'https://codefu.pages.dev/',
-    thumb: 'public/thumbs/codefu.png',
+    thumb: 'public/thumbs/codefu.jpg',
     live: true,
   },
   {
@@ -81,7 +81,7 @@ export const COURSES = [
     perDay: { zh: '1 小时/天', en: '1 hr/day' },
     difficulty: 4,
     url: 'https://agentpath.pages.dev/',
-    thumb: 'public/thumbs/agentpath.png',
+    thumb: 'public/thumbs/agentpath.jpg',
     live: true,
   },
 ];

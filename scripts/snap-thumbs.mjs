@@ -15,12 +15,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const OUT = resolve(ROOT, 'public/thumbs');
 
+// JPEG for screenshot-y pages with photos/gradients (smaller),
+// PNG for pages dominated by flat colors / sharp text where PNG wins.
 const TARGETS = [
-  { id: 'qima',      url: 'https://claude-code-launch.pages.dev/' },
-  { id: 'aiqi',      url: 'https://aiqi.pages.dev/' },
-  { id: 'codefu',    url: 'https://codefu.pages.dev/' },
-  { id: 'codeplay',  url: 'https://codequest-b1p.pages.dev/' },
-  { id: 'agentpath', url: 'https://agentpath.pages.dev/' },
+  { id: 'qima',      url: 'https://claude-code-launch.pages.dev/', format: 'jpeg' },
+  { id: 'aiqi',      url: 'https://aiqi.pages.dev/',               format: 'png'  },
+  { id: 'codefu',    url: 'https://codefu.pages.dev/',             format: 'jpeg' },
+  { id: 'codeplay',  url: 'https://codequest-b1p.pages.dev/',      format: 'png'  },
+  { id: 'agentpath', url: 'https://agentpath.pages.dev/',          format: 'jpeg' },
 ];
 
 const PLACEHOLDERS = []; // all 5 are live now — keep for future use
@@ -49,14 +51,18 @@ body{
 </body></html>`;
 
 async function snapLive(page, target) {
-  const file = resolve(OUT, `${target.id}.png`);
+  const ext = target.format === 'jpeg' ? 'jpg' : 'png';
+  const file = resolve(OUT, `${target.id}.${ext}`);
   console.log(`→ ${target.id}: ${target.url}`);
   await page.goto(target.url, { waitUntil: 'networkidle', timeout: 30_000 }).catch(() => {});
   await page.waitForTimeout(1500);
-  await page.screenshot({
-    path: file, type: 'png', fullPage: false,
+  const opts = {
+    path: file, fullPage: false,
     clip: { x: 0, y: 0, width: VIEWPORT.width, height: VIEWPORT.height },
-  });
+    type: target.format === 'jpeg' ? 'jpeg' : 'png',
+  };
+  if (target.format === 'jpeg') opts.quality = 85;
+  await page.screenshot(opts);
   console.log(`  saved ${file}`);
 }
 

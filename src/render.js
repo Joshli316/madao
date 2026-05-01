@@ -18,12 +18,7 @@ function diffDots(level) {
 }
 
 function thumbHtml(c) {
-  const path = `/${c.thumb}`;
-  return `
-    <div class="thumb-frame">
-      <div class="thumb-placeholder" aria-hidden="true">${escapeHtml(c.cn)} · ${escapeHtml(c.py)}</div>
-      <img src="${escapeHtml(path)}" alt="${escapeHtml(c.cn)} ${escapeHtml(c.py)}" loading="lazy">
-    </div>`;
+  return thumbInner(c);
 }
 
 function startBtn(c) {
@@ -75,6 +70,50 @@ function cardHtml(c) {
     </article>`;
 }
 
+function featuredCardHtml(c) {
+  // Stage 3 destination treatment: side-by-side, coral shadow, bigger type, "DESTINATION" eyebrow.
+  return `
+    <article class="card card--featured" data-course="${escapeHtml(c.id)}">
+      <div class="card--featured-thumb">${thumbInner(c)}</div>
+      <div class="card--featured-body">
+        <p class="font-mono text-xs uppercase tracking-[0.3em] text-[var(--color-coral)] mb-4">终点 · Destination</p>
+        <h3 class="text-4xl md:text-5xl font-bold leading-none mb-5">
+          <span class="font-serif-cn">${escapeHtml(c.cn)}</span>
+          <span class="font-en italic text-2xl md:text-3xl text-[var(--color-ink-soft)] ml-2">${escapeHtml(c.py)}</span>
+        </h3>
+        <p class="text-xl leading-snug mb-4">
+          <span data-pitch-zh>${escapeHtml(c.pitch.zh)}</span>
+          <span data-pitch-en class="font-en italic text-[var(--color-ink-soft)] block text-lg">${escapeHtml(c.pitch.en)}</span>
+        </p>
+        <p class="text-base text-[var(--color-ink-soft)] mb-5">
+          <em class="not-italic font-mono text-xs uppercase tracking-widest text-[var(--color-ink-muted)] block mb-1" data-i18n="card_pickif">适合你，如果…</em>
+          <span data-pickif>${escapeHtml(c.pickThisIf.zh)}</span>
+        </p>
+        <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm font-mono mb-5">
+          <li>· <span data-duration>${escapeHtml(c.duration.zh)}</span></li>
+          <li>· <span data-perday>${escapeHtml(c.perDay.zh)}</span></li>
+          <li class="flex items-center gap-1">
+            · <span data-i18n="card_difficulty">难度</span>
+            <span class="ml-1 inline-flex items-center">${diffDots(c.difficulty)}</span>
+          </li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-3">
+          ${startBtn(c)}
+          ${doneBtn(c)}
+        </div>
+      </div>
+    </article>`;
+}
+
+function thumbInner(c) {
+  const path = `/${c.thumb}`;
+  return `
+    <div class="thumb-frame">
+      <div class="thumb-placeholder" aria-hidden="true">${escapeHtml(c.cn)} · ${escapeHtml(c.py)}</div>
+      <img src="${escapeHtml(path)}" alt="${escapeHtml(c.cn)} ${escapeHtml(c.py)}" loading="lazy">
+    </div>`;
+}
+
 function arrowSvg() {
   // Hand-drawn vertical arrow between stages.
   return `
@@ -90,13 +129,14 @@ function arrowSvg() {
 
 function stageHtml(stage) {
   const courses = stage.ids.map(findCourse).filter(Boolean);
-  const isWide = courses.length === 1;
-  const grid = isWide
-    ? 'grid grid-cols-1 max-w-2xl mx-auto'
-    : 'grid grid-cols-1 md:grid-cols-2 gap-8';
+  const isFeatured = stage.number === 3;
+  const grid = isFeatured
+    ? 'grid grid-cols-1'
+    : (courses.length === 1 ? 'grid grid-cols-1 max-w-2xl mx-auto' : 'grid grid-cols-1 md:grid-cols-2 gap-8');
   const subhead = stage.pickOne
     ? `<p class="stage-label mt-2" data-i18n="stage_pickone">二选一 · 同样起点，不同风格</p>`
     : '';
+  const renderCard = isFeatured ? featuredCardHtml : cardHtml;
   return `
     <section id="stage-${stage.number}" class="mt-20 md:mt-28">
       <header class="text-center mb-10">
@@ -108,7 +148,7 @@ function stageHtml(stage) {
         ${subhead}
       </header>
       <div class="${grid}">
-        ${courses.map(cardHtml).join('')}
+        ${courses.map(renderCard).join('')}
       </div>
     </section>`;
 }

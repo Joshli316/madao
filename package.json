@@ -9,7 +9,8 @@
     "dev:css": "tailwindcss -i src/styles.css -o dist/tailwind.css --watch",
     "build": "npm run build:css",
     "dev": "npm run dev:css",
-    "snap": "node scripts/snap-thumbs.mjs"
+    "snap": "node scripts/snap-thumbs.mjs",
+    "test": "node scripts/test-smoke.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",

@@ -30,7 +30,7 @@
   <!-- Google Fonts — Vibe B: Noto Serif SC + Cormorant Garamond + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400;1,700&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="dist/tailwind.css">
 </head>
@@ -49,7 +49,7 @@
 
   <header class="border-b border-[var(--color-ink)]">
     <div class="max-w-[920px] mx-auto px-6 py-5 flex items-center justify-between">
-      <a href="#" class="flex items-baseline gap-2 no-underline text-[var(--color-ink)]">
+      <a href="/" class="flex items-baseline gap-2 no-underline text-[var(--color-ink)]" aria-label="码道 MaDao — home">
         <span class="text-3xl font-serif-cn font-bold tracking-wide">码道</span>
         <span class="font-en italic text-xl text-[var(--color-ink-soft)]">MaDao</span>
       </a>
@@ -86,33 +86,49 @@
 
     <hr class="rule mt-24">
 
-    <!-- FAQ -->
+    <!-- FAQ — left-aligned editorial spread (intentional asymmetry vs. the centered hero/stages) -->
     <section class="mt-20">
-      <h2 class="text-3xl md:text-4xl mb-10 text-center">
-        <span data-i18n="faq_title">常见问题</span>
-      </h2>
-      <div class="space-y-8 max-w-2xl mx-auto">
-        <div>
-          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q1">我必须做完五门吗？</h3>
-          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a1">不必。每个阶段挑一门就够了——三门走完，你就走过了从零到 agent 的全程。</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q2">可以跳过某个阶段吗？</h3>
-          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a2">可以。如果你已经会写代码，从「智路」直接开始；如果你完全没碰过代码，强烈建议从「起码」或「AI 起」开始。</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q3">一共需要多久？</h3>
-          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a3">走完三门约 4–5 个月，每天 30–60 分钟。可以慢慢来——这是一条路，不是一场比赛。</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q4">为什么有两种风格的入门课？</h3>
-          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a4">因为「最好的课」对每个人不一样。安静温暖的人和爱玩游戏的人需要不同的入口。两条路都到得了同一个目的地。</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q5">是谁做的这个网站？</h3>
-          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a5">一个用 Claude Code 自学编程的留学生。这五门教程都是我做的——这个 hub 把它们串成一条路。</p>
-        </div>
-      </div>
+      <header class="max-w-2xl mb-12">
+        <p class="stage-label mb-3">FAQ · 常见问题</p>
+        <h2 class="text-3xl md:text-4xl" data-i18n="faq_title">常见问题</h2>
+      </header>
+      <ol class="faq-list max-w-2xl space-y-10">
+        <li class="faq-item">
+          <span class="faq-num" aria-hidden="true">01</span>
+          <div class="faq-body">
+            <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q1">我必须做完五门吗？</h3>
+            <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a1">不必。每个阶段挑一门就够了——三门走完，你就走过了从零到 agent 的全程。</p>
+          </div>
+        </li>
+        <li class="faq-item">
+          <span class="faq-num" aria-hidden="true">02</span>
+          <div class="faq-body">
+            <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q2">可以跳过某个阶段吗？</h3>
+            <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a2">可以。如果你已经会写代码，从「智路」直接开始；如果你完全没碰过代码，强烈建议从「起码」或「AI 起」开始。</p>
+          </div>
+        </li>
+        <li class="faq-item">
+          <span class="faq-num" aria-hidden="true">03</span>
+          <div class="faq-body">
+            <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q3">一共需要多久？</h3>
+            <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a3">走完三门约 4–5 个月，每天 30–60 分钟。可以慢慢来——这是一条路，不是一场比赛。</p>
+          </div>
+        </li>
+        <li class="faq-item">
+          <span class="faq-num" aria-hidden="true">04</span>
+          <div class="faq-body">
+            <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q4">为什么有两种风格的入门课？</h3>
+            <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a4">因为「最好的课」对每个人不一样。安静温暖的人和爱玩游戏的人需要不同的入口。两条路都到得了同一个目的地。</p>
+          </div>
+        </li>
+        <li class="faq-item">
+          <span class="faq-num" aria-hidden="true">05</span>
+          <div class="faq-body">
+            <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q5">是谁做的这个网站？</h3>
+            <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a5">一个用 Claude Code 自学编程的留学生。这五门教程都是我做的——这个 hub 把它们串成一条路。</p>
+          </div>
+        </li>
+      </ol>
     </section>
   </main>
 
@@ -120,7 +136,7 @@
     <div class="max-w-[920px] mx-auto px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-sm font-mono text-[var(--color-ink-soft)]">
       <p>
         <span data-i18n="footer_built">用 Claude Code 搭建</span>
-        · <span data-i18n="footer_year">2026</span>
+        · <span>2026</span>
       </p>
       <p>
         <a href="https://github.com/Joshli316/madao" target="_blank" rel="noopener" class="underline hover:text-[var(--color-coral)]" data-i18n="footer_github">GitHub</a>

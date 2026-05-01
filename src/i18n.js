@@ -8,12 +8,7 @@ const LS_KEY = 'madao:lang';
 let currentLang = 'zh';
 
 const STRINGS = {
-  // Header
-  brand_cn: { zh: '码道', en: '码道' }, // 码道 stays bilingual-fixed
-  brand_en: { zh: 'MaDao', en: 'MaDao' },
-  toggle_to_en: { zh: 'EN', en: '中' },
-
-  // Hero
+  // Hero (zine treatment — 码道 / The Way of Code stays bilingual-fixed in both modes)
   tagline_cn: { zh: '从零到智能体', en: '从零到智能体' },
   tagline_en: { zh: 'From Zero to Agentic AI', en: 'From Zero to Agentic AI' },
   hero_cn: { zh: '码道', en: '码道' },
@@ -25,11 +20,8 @@ const STRINGS = {
   hero_cta: { zh: '从这里开始 ↓', en: 'Start Here ↓' },
   hero_meta: { zh: '免费 · 无登录 · 双语', en: 'Free · No login · Bilingual' },
 
-  // Stage labels
+  // Stage subhead (the labels themselves are zine-bilingual, rendered in render.js)
   stage_pickone: { zh: '二选一 · 同样起点，不同风格', en: 'Pick one · same level, different vibes' },
-  stage_1_cn: { zh: '入门', en: 'Foundations' },
-  stage_2_cn: { zh: '练习', en: 'Practice' },
-  stage_3_cn: { zh: '进阶', en: 'Advanced' },
 
   // Card UI
   card_pickif: { zh: '适合你，如果…', en: 'Pick this if…' },
@@ -69,7 +61,6 @@ const STRINGS = {
 
   // Footer
   footer_built: { zh: '用 Claude Code 搭建', en: 'Built with Claude Code' },
-  footer_year: { zh: '2026', en: '2026' },
   footer_github: { zh: 'GitHub', en: 'GitHub' },
 
   // a11y
@@ -90,10 +81,6 @@ export function t(key, params) {
     }
   }
   return str;
-}
-
-export function getLanguage() {
-  return currentLang;
 }
 
 export function setLanguage(lang) {
@@ -135,12 +122,7 @@ export function applyTranslations() {
       if (attr && key) el.setAttribute(attr.trim(), t(key.trim()));
     });
   });
-  // Toggle button text shows the OPPOSITE language (per CLAUDE.md: button shows
-  // the language you'd switch TO, not current state — wait, CLAUDE.md says
-  // "Toggle buttons show the CURRENT state, not the opposite." So in zh mode
-  // the button says "中" (current) — but that's confusing. Re-reading CLAUDE.md:
-  // "Toggle buttons show the CURRENT state, not the opposite." Means if you're
-  // in Chinese, button reads "中". To clarify, we display CURRENT language.
+  // Toggle reflects the CURRENT language (per project rule).
   const toggleBtn = document.getElementById('lang-toggle');
   if (toggleBtn) {
     toggleBtn.textContent = currentLang === 'zh' ? '中' : 'EN';
