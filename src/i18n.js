@@ -70,10 +70,7 @@ const STRINGS = {
 
 export function t(key, params) {
   const entry = STRINGS[key];
-  if (!entry) {
-    console.warn(`[i18n] Missing key: "${key}"`);
-    return key;
-  }
+  if (!entry) return key;
   let str = entry[currentLang] || entry['en'] || key;
   if (params) {
     for (const [k, v] of Object.entries(params)) {
