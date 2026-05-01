@@ -1,0 +1,19 @@
+{
+  "name": "madao",
+  "version": "0.1.0",
+  "description": "码道 MaDao — Unified Claude Code course hub. From zero to agentic AI.",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i src/styles.css -o dist/tailwind.css --minify",
+    "dev:css": "tailwindcss -i src/styles.css -o dist/tailwind.css --watch",
+    "build": "npm run build:css",
+    "dev": "npm run dev:css",
+    "snap": "node scripts/snap-thumbs.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "playwright": "^1.50.0"
+  }
+}

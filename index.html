@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>码道 MaDao — 从零到智能体 / The Way of Code</title>
+  <meta name="description" content="码道 MaDao：五门 Claude Code 教程组成的统一学习路径，从零基础写第一行代码，到搭建你的第一个 AI agent。Five Claude Code tutorials arranged from zero to agentic AI.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="码道 MaDao — The Way of Code">
+  <meta property="og:description" content="From Zero to Agentic AI · 五门 Claude Code 教程组成的一条路径。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://madao-cc.pages.dev/">
+  <meta property="og:image" content="https://madao-cc.pages.dev/public/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="码道 MaDao">
+  <meta name="twitter:description" content="The Way of Code — From Zero to Agentic AI.">
+
+  <!-- Favicon: hand-drawn 道 stroke in coral on cream -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23FAF6EE'/><text x='32' y='46' text-anchor='middle' font-family='serif' font-size='44' font-weight='700' fill='%231A1A1A'>码</text><circle cx='52' cy='14' r='5' fill='%23D9534F'/></svg>">
+
+  <!-- Google Fonts — Vibe B: Noto Serif SC + Cormorant Garamond + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="dist/tailwind.css">
+
+  <style>
+    .font-serif-cn { font-family: var(--font-serif-cn); }
+    .font-en       { font-family: var(--font-serif-en); }
+    .font-mono     { font-family: var(--font-mono); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- SVG filter for hand-drawn arrow wobble -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="wobble">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/>
+        <feDisplacementMap in="SourceGraphic" scale="1.6"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-coral focus:text-white focus:px-4 focus:py-2" data-i18n="a11y_skip">跳到主内容</a>
+
+  <header class="border-b border-[var(--color-ink)]">
+    <div class="max-w-[920px] mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="#" class="flex items-baseline gap-2 no-underline text-[var(--color-ink)]">
+        <span class="text-3xl font-serif-cn font-bold tracking-wide">码道</span>
+        <span class="font-en italic text-xl text-[var(--color-ink-soft)]">MaDao</span>
+      </a>
+      <button id="lang-toggle" class="lang-toggle px-3 py-1.5 text-sm" aria-label="Switch language">中</button>
+    </div>
+  </header>
+
+  <main id="main" class="max-w-[920px] mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32">
+
+    <!-- HERO -->
+    <section class="text-center">
+      <p class="stage-label mb-6">A Path · 一条路</p>
+      <h1 class="hero-cn text-[clamp(4.5rem,12vw,8rem)] mb-3" data-i18n="hero_cn">码道</h1>
+      <p class="hero-en text-[clamp(2rem,5vw,3.5rem)] text-[var(--color-ink-soft)] mb-10" data-i18n="hero_en">The Way of Code</p>
+
+      <hr class="rule max-w-xs mx-auto my-10">
+
+      <p class="text-2xl md:text-3xl font-serif-cn mb-1" data-i18n="tagline_cn">从零到智能体</p>
+      <p class="font-en italic text-xl md:text-2xl text-[var(--color-ink-soft)] mb-10" data-i18n="tagline_en">From Zero to Agentic AI</p>
+
+      <p class="text-lg md:text-xl leading-relaxed max-w-xl mx-auto mb-10" data-i18n="hero_pitch">
+        五门 Claude Code 教程，组成一条由浅入深的路径。从写第一行代码，到搭建你的第一个智能体。每一阶段两种风格——挑你喜欢的那一种。
+      </p>
+
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-ink-muted)] mb-8" data-i18n="hero_meta">免费 · 无登录 · 双语</p>
+
+      <a href="#stage-1" data-scroll-to="#stage-1" class="btn-ink inline-block no-underline" data-i18n="hero_cta">从这里开始 ↓</a>
+    </section>
+
+    <hr class="rule mt-24">
+
+    <!-- STAGES (rendered by render.js) -->
+    <div id="stages"></div>
+
+    <hr class="rule mt-24">
+
+    <!-- FAQ -->
+    <section class="mt-20">
+      <h2 class="text-3xl md:text-4xl mb-10 text-center">
+        <span data-i18n="faq_title">常见问题</span>
+      </h2>
+      <div class="space-y-8 max-w-2xl mx-auto">
+        <div>
+          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q1">我必须做完五门吗？</h3>
+          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a1">不必。每个阶段挑一门就够了——三门走完，你就走过了从零到 agent 的全程。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q2">可以跳过某个阶段吗？</h3>
+          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a2">可以。如果你已经会写代码，从「智路」直接开始；如果你完全没碰过代码，强烈建议从「起码」或「AI 起」开始。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q3">一共需要多久？</h3>
+          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a3">走完三门约 4–5 个月，每天 30–60 分钟。可以慢慢来——这是一条路，不是一场比赛。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q4">为什么有两种风格的入门课？</h3>
+          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a4">因为「最好的课」对每个人不一样。安静温暖的人和爱玩游戏的人需要不同的入口。两条路都到得了同一个目的地。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif-cn font-semibold mb-2" data-i18n="faq_q5">是谁做的这个网站？</h3>
+          <p class="text-base leading-relaxed text-[var(--color-ink-soft)]" data-i18n="faq_a5">一个用 Claude Code 自学编程的留学生。这五门教程都是我做的——这个 hub 把它们串成一条路。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-[var(--color-ink)] mt-12">
+    <div class="max-w-[920px] mx-auto px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-sm font-mono text-[var(--color-ink-soft)]">
+      <p>
+        <span data-i18n="footer_built">用 Claude Code 搭建</span>
+        · <span data-i18n="footer_year">2026</span>
+      </p>
+      <p>
+        <a href="https://github.com/Joshli316/madao" target="_blank" rel="noopener" class="underline hover:text-[var(--color-coral)]" data-i18n="footer_github">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

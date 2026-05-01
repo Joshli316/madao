@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+/* =====================================================
+   码道 MaDao — Vibe B (Bilingual zine)
+   Cream paper + ink + warm coral accent.
+   Palette as CSS custom properties so dark mode (v2)
+   can ride on theme swap, not !important overrides.
+   ===================================================== */
+
+@theme {
+  --color-cream: #FAF6EE;
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #3A3A3A;
+  --color-ink-muted: #6B6B6B;
+  --color-coral: #D9534F;
+  --color-coral-soft: #E8736F;
+  --color-paper: #F3EDE0;
+  --color-rule: #1A1A1A;
+
+  --font-serif-cn: "Noto Serif SC", "STSong", "SimSun", serif;
+  --font-serif-en: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+:root {
+  --bg: var(--color-cream);
+  --ink: var(--color-ink);
+  --accent: var(--color-coral);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-serif-cn);
+  font-feature-settings: "kern", "liga", "onum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="en"] body {
+  font-family: var(--font-serif-en);
+}
+
+/* English-only spans always use the English serif, even in zh mode */
+.font-en, .en-only {
+  font-family: var(--font-serif-en);
+}
+.font-mono, code, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+/* Subtle paper texture using a tiny SVG noise — no extra HTTP request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.10  0 0 0 0 0.10  0 0 0 0.04 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+main, header, footer { position: relative; z-index: 1; }
+
+/* Hand-drawn arrow stroke — slightly wobbly via filter */
+.hand-arrow {
+  filter: url(#wobble);
+}
+
+/* Make the EN/中 toggle look like a stamp */
+.lang-toggle {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  transition: background 120ms ease, color 120ms ease, transform 80ms ease;
+}
+.lang-toggle:hover { background: var(--ink); color: var(--color-cream); }
+.lang-toggle:active { transform: translateY(1px); }
+
+/* Course card */
+.card {
+  background: var(--color-paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+.card.is-done {
+  background: color-mix(in srgb, var(--color-paper) 80%, var(--color-coral) 20%);
+}
+
+/* Buttons inside cards */
+.btn-ink {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--ink);
+  color: var(--color-cream);
+  padding: 0.625rem 1rem;
+  border: 1.5px solid var(--ink);
+  transition: background 120ms ease, color 120ms ease, transform 80ms ease;
+}
+.btn-ink:hover { background: var(--color-coral); border-color: var(--color-coral); }
+.btn-ink:active { transform: translateY(1px); }
+
+.btn-ghost {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.625rem 1rem;
+  border: 1.5px solid var(--ink);
+  transition: background 120ms ease, color 120ms ease, transform 80ms ease;
+}
+.btn-ghost:hover { background: var(--ink); color: var(--color-cream); }
+.btn-ghost:active { transform: translateY(1px); }
+.btn-ghost.is-done {
+  background: var(--color-coral);
+  color: var(--color-cream);
+  border-color: var(--color-coral);
+}
+.btn-ghost.is-done:hover {
+  background: color-mix(in srgb, var(--color-coral) 85%, black);
+}
+
+/* "Coming Soon" badge */
+.badge-soon {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--color-cream);
+  padding: 0.2rem 0.55rem;
+  display: inline-block;
+}
+
+/* Difficulty dots */
+.diff-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--ink);
+  margin-right: 0.2rem;
+}
+.diff-dot.is-on { background: var(--ink); }
+
+/* Stage label */
+.stage-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Hero typography */
+.hero-cn {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.hero-en {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+/* Pull-quote rule */
+.rule {
+  border: 0;
+  border-top: 1.5px solid var(--ink);
+  height: 0;
+}
+
+/* Thumbnail aspect 16:9 */
+.thumb-frame {
+  aspect-ratio: 16 / 9;
+  background: var(--color-cream);
+  border-bottom: 1.5px solid var(--ink);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+.thumb-frame .thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-cream),
+    var(--color-cream) 8px,
+    var(--color-paper) 8px,
+    var(--color-paper) 16px
+  );
+}
+.thumb-frame img {
+  position: relative;
+  z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Smooth fade for language swap */
+[data-i18n] { transition: opacity 100ms ease; }
+
+/* Focus ring — keyboard users only */
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+}
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Responsive type */
+@media (max-width: 640px) {
+  .hero-cn { font-size: clamp(3.5rem, 14vw, 5rem); }
+  .hero-en { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+}
