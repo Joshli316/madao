@@ -4,7 +4,6 @@
 // ============================================
 
 import { COURSES, STAGES, findCourse } from './content.js';
-import { t } from './i18n.js';
 
 const escapeHtml = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
